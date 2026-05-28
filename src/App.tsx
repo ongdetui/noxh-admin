@@ -5,6 +5,8 @@ import LoginPage from '@/pages/LoginPage'
 import DashboardLayout from '@/layouts/DashboardLayout'
 import ProjectsPage from '@/pages/projects/ProjectsPage'
 import NewsPage from '@/pages/news/NewsPage'
+import AiAnalyticsPage from '@/pages/ai/AiAnalyticsPage'
+import DocumentAnalyticsPage from '@/pages/ai/DocumentAnalyticsPage'
 
 export default function App() {
   return (
@@ -22,6 +24,8 @@ export default function App() {
           <Route index element={<Navigate to="projects" replace />} />
           <Route path="projects" element={<ProjectsPage />} />
           <Route path="news" element={<NewsPage />} />
+          <Route path="ai-analytics" element={<AiAnalyticsPage />} />
+          <Route path="document-analytics" element={<DocumentAnalyticsPage />} />
         </Route>
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>

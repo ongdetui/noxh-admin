@@ -1,3 +1,9 @@
+import type {
+  AiStatsResponse,
+  DocumentAnalysesFilter,
+  DocumentAnalysesListResponse,
+  DocumentAnalysisDetail,
+} from "@/types/ai";
 import type { AuthResponse, LoginDto } from "@/types/auth";
 import type {
   NewsDetail,
@@ -188,6 +194,32 @@ export const adminNewsApi = {
     request<NewsItem>("patch", `/admin/news/${id}`, body),
   remove: (id: number) =>
     request<{ success: boolean }>("delete", `/admin/news/${id}`),
+};
+
+export const adminAiApi = {
+  stats: (params: { dateFrom?: string; dateTo?: string }) => {
+    const p: Record<string, string> = {};
+    if (params.dateFrom) p.dateFrom = params.dateFrom;
+    if (params.dateTo) p.dateTo = params.dateTo;
+    return request<AiStatsResponse>("get", "/admin/ai/stats", undefined, p);
+  },
+  listAnalyses: (filter: DocumentAnalysesFilter) => {
+    const params: Record<string, string> = {
+      page: String(filter.page),
+      limit: String(filter.limit),
+    };
+    if (filter.userId) params.userId = filter.userId;
+    if (filter.dateFrom) params.dateFrom = filter.dateFrom;
+    if (filter.dateTo) params.dateTo = filter.dateTo;
+    return request<DocumentAnalysesListResponse>(
+      "get",
+      "/admin/ai/analyses",
+      undefined,
+      params,
+    );
+  },
+  getAnalysis: (id: string) =>
+    request<DocumentAnalysisDetail>("get", `/admin/ai/analyses/${id}`),
 };
 
 export const authApi = {

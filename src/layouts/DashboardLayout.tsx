@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
-import { Building2, LogOut, Newspaper } from 'lucide-react'
+import { BarChart2, BrainCircuit, Building2, LogOut, Newspaper } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import { cn } from '@/lib/utils'
 
@@ -47,6 +47,34 @@ export default function DashboardLayout() {
           >
             <Newspaper className="size-4 shrink-0" />
             Tin tức
+          </NavLink>
+          <NavLink
+            to="/dashboard/ai-analytics"
+            className={({ isActive }) =>
+              cn(
+                'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors',
+                isActive
+                  ? 'bg-primary text-primary-foreground font-medium'
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+              )
+            }
+          >
+            <BrainCircuit className="size-4 shrink-0" />
+            AI Analytics
+          </NavLink>
+          <NavLink
+            to="/dashboard/document-analytics"
+            className={({ isActive }) =>
+              cn(
+                'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors',
+                isActive
+                  ? 'bg-primary text-primary-foreground font-medium'
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+              )
+            }
+          >
+            <BarChart2 className="size-4 shrink-0" />
+            Document Analytics
           </NavLink>
         </nav>
 
